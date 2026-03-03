@@ -17,3 +17,6 @@ class Player:
 
     def setMult(self, mult):
         self.__mult = mult
+
+    def calcPoints(self, time):
+        return time * self.__mult # uses time in milliseconds
