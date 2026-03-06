@@ -1,3 +1,16 @@
-from cracker import brute_force_demo
+from cracker import *
+import string
+from userinput import *
+from player import *
 
-brute_force_demo("zefgs")
+
+testPolicy = PasswordPolicy
+testPolicy.allowed_chars = string.ascii_lowercase
+testPolicy.allowed_chars = testPolicy.allowed_chars + string.ascii_uppercase
+testPolicy.max_len = 5
+
+test = prompt_password(testPolicy)
+
+print(test)
+
+brute_force_demo(test.password)

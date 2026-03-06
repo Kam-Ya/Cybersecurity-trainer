@@ -1,7 +1,12 @@
+from userinput import PasswordPolicy
+
 class Player:
-    __points
-    __mult
-    __prevPass
+    __points: int
+    __mult: float
+    __prevPass: str
+    
+    __policy: PasswordPolicy
+
 
     def __init___(self, points, mult):
         self.__points = 0
