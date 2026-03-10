@@ -11,10 +11,12 @@ for i in range(inp) - 1:
 
 # so the game lasts until the user quits
 while (1):
-    check = input("Which node to check: ")
-
+    check = input("Which node to check (type -1 to exit): ")
+    
     if check == 0:
         print(N.text)
+    else if check == -1:
+        break
     else:
         temp = N.find(check-1)
         print(temp.text) # this function also still needs to be implemented
