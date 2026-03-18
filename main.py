@@ -1,16 +1,27 @@
-from cracker import *
+import spade
 import string
-from userinput import *
-from player import *
+from userInput import policy_from_charset, prompt_password
+from playerAgent import Player
+from game.manager import GameManager
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 
-testPolicy = PasswordPolicy
-testPolicy.allowed_chars = string.ascii_lowercase
-testPolicy.allowed_chars = testPolicy.allowed_chars + string.ascii_uppercase
-testPolicy.max_len = 5
 
-test = prompt_password(testPolicy)
+async def main():
+    # Build a player with a default policy
+    policy = policy_from_charset(
+        charset=string.ascii_lowercase + string.ascii_uppercase,
+        max_len=5,
+        min_len=1,
+        hide_input=False,
+        require_confirm=False,
+    )
+    player  = Player(policy=policy)
+    manager = GameManager(player)
+    await manager.loop()
 
-print(test)
 
-brute_force_demo(test.password)
+if __name__ == "__main__":
+    spade.run(main(), embedded_xmpp_server=True)
